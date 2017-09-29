@@ -21,6 +21,8 @@ fn main() {
     let s = RailFenceCipher { size: 3 };
     let o = s.encrypt(&"ahojah".to_string());
     println!("Encrypted:{:?}", o);
+    let a = s.decrypt(&o);
+    println!("Decrypted:{:?}", a);
     /*let plain_text = "ahojjakje".to_string();
     let cryptosystem = RailFenceCipher::default();
     let output = cryptosystem.encrypt(&plain_text);

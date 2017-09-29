@@ -52,7 +52,21 @@ impl SymmetricCipher<RailFenceCipherText, String> for RailFenceCipher {
     }
 
     fn decrypt(&self, input: &RailFenceCipherText) -> String {
-        "ahoj".to_string()
+        let input = &input.0;
+        let msg_len = input.char_indices().count();
+        let mut list = RfCoordinates::generate(self, msg_len);
+        list.sort_by(|&RfCoordinates(a, _), &RfCoordinates(b, _)| {
+            a.cmp(&b)
+        });
+        let mut state: Vec<(RfCoordinates, char)> = list.into_iter().zip(input.chars()).collect();
+        state.sort_by(|&(RfCoordinates(_, a), _), &(RfCoordinates(_, b), _)| {
+            a.cmp(&b)
+        });
+        let cipher_text: String = state
+            .into_iter()
+            .map(|(_, c)| c)
+            .collect();
+        cipher_text
     }
 }
 
