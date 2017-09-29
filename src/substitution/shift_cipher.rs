@@ -1,4 +1,5 @@
 use std::ascii::AsciiExt;
+use super::{PlainText, CipherText};
 pub use symmetric_cipher::*;
 
 pub struct ShiftCipher {
@@ -21,7 +22,7 @@ impl Default for ShiftCipher {
     }
 }
 
-impl SymmetricCipher for ShiftCipher {
+impl SymmetricCipher<CipherText, PlainText> for ShiftCipher {
     fn encrypt(&self, input: &PlainText) -> CipherText {
 
         fn shift_ascii_value(input: char, shift: i16, base:i16, modulus:i16) -> char {
