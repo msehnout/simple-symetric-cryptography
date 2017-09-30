@@ -15,17 +15,12 @@ fn main() {
     println!("Cipher text: {}", cipher_text);
     println!("Decrypted text: {}", decrypted_text);
 
-    let c: RailFenceCipherText = RailFenceCipherText("ahoj".to_string());
-    println!("{:?}", c);
-
     let s = RailFenceCipher { size: 3 };
-    let o = s.encrypt(&"ahojah".to_string());
+    let i = "ahoj jak se vede".to_string();
+    println!("Plain:{:}", i);
+    let o = s.encrypt(&i);
     println!("Encrypted:{:?}", o);
     let a = s.decrypt(&o);
-    println!("Decrypted:{:?}", a);
-    /*let plain_text = "ahojjakje".to_string();
-    let cryptosystem = RailFenceCipher::default();
-    let output = cryptosystem.encrypt(&plain_text);
-    println!("Encrypted:{:?}", output);*/
+    println!("Decrypted:{}", a);
 
 }
